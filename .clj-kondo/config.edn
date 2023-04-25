@@ -1,0 +1,10 @@
+{:hooks   {:analyze-call {taoensso.timbre/refer-timbre hooks.taoensso.timbre/refer-timbre}}
+ :lint-as {taoensso.timbre/tracef clojure.core/format
+           taoensso.timbre/debugf clojure.core/format
+           taoensso.timbre/infof clojure.core/format
+           taoensso.timbre/warnf clojure.core/format
+           taoensso.timbre/errorf clojure.core/format
+           taoensso.timbre/reportf clojure.core/format}
+ :linters {:clojure-lsp/unused-public-var {:level :off}}
+ :skip-comments true
+ :output {:exclude-files ["target.*"]}}

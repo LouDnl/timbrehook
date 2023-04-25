@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"calva.jackInEnv": {
+			"JAVA_TOOL_OPTIONS": "${env:JAVA_TOOL_OPTIONS} -Xdebug -XX:-OmitStackTraceInFastThrow"
+		},
+		"calva.prettyPrintingOptions": {
+			"printEngine": "calva",
+			"enabled": true,
+			"width": 120,
+			"maxLength": 50
+		}
+	},
+	"extensions": {
+		"recommendations": []
+	}
+}
