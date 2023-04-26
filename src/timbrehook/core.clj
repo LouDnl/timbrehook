@@ -1,4 +1,6 @@
 (ns timbrehook.core
+  (:require [timbrehook.loggingtest]
+            [timbrehook.newtest])
   (:gen-class))
 
 (defn -main
