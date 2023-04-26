@@ -1,27 +1,22 @@
 (ns hooks.taoensso.timbre
-  (:require [clj-kondo.hooks-api :as api]
-            [clj-kondo.impl.rewrite-clj.node :as node]))
+  (:require [clj-kondo.hooks-api :as api]))
 
-;; (defn only-args [name-symbol]
-;;   (api/list-node
-;;    [(api/token-node 'defn) (api/token-node name-symbol) (api/vector-node [(api/token-node '&) (api/token-node '_)])]))
-
-(defn refer-timbre [{:keys [node]}]
+(defn refer-timbre [_]
   (let [fns      ['trace  'debug  'info  'warn  'error  'fatal  'report
                   'tracef 'debugf 'infof 'warnf 'errorf 'fatalf 'reportf]
         new-node (api/list-node
                   [(api/token-node 'require)
-                   (node/quote-node
-                    (api/vector-node
-                     [(api/token-node 'taoensso.timbre)
-                      (api/keyword-node ':refer)
-                      (api/vector-node
-                       (mapv api/token-node
-                             fns))]))])]
-    (prn *ns*)
-    (prn (str node))
-    (prn (str new-node))
-    {:node new-node}))
+                   (api/list-node
+                    [(api/token-node 'quote)
+                     (api/vector-node
+                      [(api/token-node 'taoensso.timbre)
+                       (api/keyword-node ':refer)
+                       (api/vector-node
+                        (mapv api/token-node
+                              fns))])])])]
+    {:node (with-meta new-node
+             {:clj-kondo/ignore [:duplicate-require :unused-referred-var]})}))
+
 
 
 #_(defn refer-timbre [{:keys [ns node]}]
